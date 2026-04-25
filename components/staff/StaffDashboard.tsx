@@ -11,6 +11,7 @@ import OrderDetailModal from "./OrderDetailModal";
 import {
   STATUS_ORDER,
   STATUS_LABEL,
+  type CartItem,
   type Order,
   type OrderStatus,
 } from "@/lib/types";
@@ -105,7 +106,7 @@ export default function StaffDashboard() {
 
   const seedOrder = () => {
     const itemCount = 1 + Math.floor(Math.random() * 3);
-    const items = [];
+    const items: CartItem[] = [];
     for (let i = 0; i < itemCount; i++) {
       const it = pick(SAMPLE_ITEMS);
       const ex = items.find((x) => x.id === it.id);
