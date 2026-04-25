@@ -1,0 +1,261 @@
+import type { MenuItem, MenuCategory } from "./types";
+
+export const CATEGORIES: { id: MenuCategory; label: string }[] = [
+  { id: "cortes", label: "Cortes" },
+  { id: "especialidades", label: "Especialidades" },
+  { id: "entradas", label: "Entradas" },
+  { id: "acompanamientos", label: "Acompañamientos" },
+  { id: "postres", label: "Postres" },
+  { id: "bebidas", label: "Bebidas" },
+];
+
+const img = (id: string) =>
+  `https://images.unsplash.com/${id}?w=900&q=80&auto=format&fit=crop`;
+
+export const MENU: MenuItem[] = [
+  // CORTES
+  {
+    id: "c1",
+    cat: "cortes",
+    name: "Ribeye Bandido",
+    desc: "Corte premium de 400g, marmoleado perfecto, asado al carbón.",
+    price: 480,
+    tag: "Más vendido",
+    image: img("photo-1558030006-450675393462"),
+  },
+  {
+    id: "c2",
+    cat: "cortes",
+    name: "New York Steak",
+    desc: "Corte clásico americano de 350g, jugoso y con sabor intenso.",
+    price: 420,
+    image: img("photo-1600891964092-4316c288032e"),
+  },
+  {
+    id: "c3",
+    cat: "cortes",
+    name: "Filete Mignon",
+    desc: "El corte más tierno de res, 250g envuelto en tocino.",
+    price: 520,
+    tag: "Premium",
+    image: img("photo-1546964124-0cce460f38ef"),
+  },
+  {
+    id: "c4",
+    cat: "cortes",
+    name: "T-Bone Legendario",
+    desc: "Corte doble de 500g con hueso en T, para verdaderos bandidos.",
+    price: 580,
+    image: img("photo-1544025162-d76694265947"),
+  },
+  {
+    id: "c5",
+    cat: "cortes",
+    name: "Porterhouse",
+    desc: "Corte gigante de 600g, ideal para compartir.",
+    price: 690,
+    tag: "Para 2",
+    image: img("photo-1607116176122-fdb38f96b9b1"),
+  },
+  {
+    id: "c6",
+    cat: "cortes",
+    name: "Arrachera Marinada",
+    desc: "Suave arrachera marinada en especias secretas, 300g.",
+    price: 320,
+    image: img("photo-1529692236671-f1f6cf9683ba"),
+  },
+
+  // ESPECIALIDADES
+  {
+    id: "e1",
+    cat: "especialidades",
+    name: "Costillas BBQ",
+    desc: "Costillas de cerdo glaseadas con BBQ casera, 600g.",
+    price: 380,
+    tag: "Favorito",
+    image: img("photo-1544025162-d76694265947"),
+  },
+  {
+    id: "e2",
+    cat: "especialidades",
+    name: "Pollo a la Parrilla",
+    desc: "Medio pollo marinado con hierbas, asado lentamente.",
+    price: 220,
+    image: img("photo-1598103442097-8b74394b95c6"),
+  },
+  {
+    id: "e3",
+    cat: "especialidades",
+    name: "Mixta del Bandido",
+    desc: "Combinación de res, cerdo y pollo, perfecta para 2 personas.",
+    price: 620,
+    tag: "Para 2",
+    image: img("photo-1555939594-58d7cb561ad1"),
+  },
+  {
+    id: "e4",
+    cat: "especialidades",
+    name: "Lomo de Cerdo",
+    desc: "Lomo glaseado en miel y mostaza, 350g.",
+    price: 290,
+    image: img("photo-1432139509613-5c4255815697"),
+  },
+
+  // ENTRADAS
+  {
+    id: "en1",
+    cat: "entradas",
+    name: "Empanadas Argentinas",
+    desc: "Cuatro empanadas de carne especiada, masa horneada.",
+    price: 140,
+    image: img("photo-1601314002592-b8734bca6604"),
+  },
+  {
+    id: "en2",
+    cat: "entradas",
+    name: "Carpaccio de Res",
+    desc: "Finas láminas de res con parmesano y rúcula.",
+    price: 180,
+    image: img("photo-1565299585323-38d6b0865b47"),
+  },
+  {
+    id: "en3",
+    cat: "entradas",
+    name: "Tabla de Quesos",
+    desc: "Selección de quesos artesanales con mermeladas y nueces.",
+    price: 220,
+    image: img("photo-1505253758473-96b7015fcd40"),
+  },
+  {
+    id: "en4",
+    cat: "entradas",
+    name: "Provoleta",
+    desc: "Queso provolone fundido con orégano y aceite de oliva.",
+    price: 160,
+    image: img("photo-1626844131082-256783844137"),
+  },
+
+  // ACOMPAÑAMIENTOS
+  {
+    id: "a1",
+    cat: "acompanamientos",
+    name: "Papas Bandido",
+    desc: "Papas fritas con tocino, queso cheddar y cebollín.",
+    price: 110,
+    tag: "Top",
+    image: img("photo-1573080496219-bb080dd4f877"),
+  },
+  {
+    id: "a2",
+    cat: "acompanamientos",
+    name: "Puré Rústico",
+    desc: "Puré de papa con mantequilla y ajo asado.",
+    price: 85,
+    image: img("photo-1568901346375-23c9450c58cd"),
+  },
+  {
+    id: "a3",
+    cat: "acompanamientos",
+    name: "Ensalada César",
+    desc: "Lechuga romana, parmesano, crutones y aderezo casero.",
+    price: 120,
+    image: img("photo-1550304943-4f24f54ddde9"),
+  },
+  {
+    id: "a4",
+    cat: "acompanamientos",
+    name: "Vegetales Asados",
+    desc: "Mezcla de vegetales de temporada al carbón.",
+    price: 100,
+    image: img("photo-1540420773420-3366772f4999"),
+  },
+  {
+    id: "a5",
+    cat: "acompanamientos",
+    name: "Anillos de Cebolla",
+    desc: "Crujientes anillos rebozados con dip ranch.",
+    price: 90,
+    image: img("photo-1639024471283-03518883512d"),
+  },
+
+  // POSTRES
+  {
+    id: "p1",
+    cat: "postres",
+    name: "Cheesecake de Frutos Rojos",
+    desc: "Tarta de queso cremosa con coulis de frutos rojos.",
+    price: 130,
+    image: img("photo-1565958011703-44f9829ba187"),
+  },
+  {
+    id: "p2",
+    cat: "postres",
+    name: "Brownie con Helado",
+    desc: "Brownie tibio con helado de vainilla y salsa de chocolate.",
+    price: 120,
+    tag: "Favorito",
+    image: img("photo-1606313564200-e75d5e30476c"),
+  },
+  {
+    id: "p3",
+    cat: "postres",
+    name: "Flan Casero",
+    desc: "Flan tradicional de caramelo, receta de la abuela.",
+    price: 95,
+    image: img("photo-1488477181946-6428a0291777"),
+  },
+  {
+    id: "p4",
+    cat: "postres",
+    name: "Tres Leches",
+    desc: "Pastel esponjoso bañado en tres leches y canela.",
+    price: 110,
+    image: img("photo-1551024506-0bccd828d307"),
+  },
+
+  // BEBIDAS
+  {
+    id: "b1",
+    cat: "bebidas",
+    name: "Vino Tinto Reserva",
+    desc: "Copa de Malbec argentino, ideal para acompañar carnes.",
+    price: 150,
+    tag: "Recomendado",
+    image: img("photo-1510812431401-41d2bd2722f3"),
+  },
+  {
+    id: "b2",
+    cat: "bebidas",
+    name: "Cerveza Artesanal",
+    desc: "Cerveza IPA local, 355ml, bien fría.",
+    price: 75,
+    image: img("photo-1535958636474-b021ee887b13"),
+  },
+  {
+    id: "b3",
+    cat: "bebidas",
+    name: "Limonada de la Casa",
+    desc: "Limonada natural con menta y jengibre, 500ml.",
+    price: 60,
+    image: img("photo-1621263764928-df1444c3a6a8"),
+  },
+  {
+    id: "b4",
+    cat: "bebidas",
+    name: "Refresco",
+    desc: "Coca-Cola, Sprite o Fanta, 600ml.",
+    price: 40,
+    image: img("photo-1581636625402-29b2a704ef13"),
+  },
+  {
+    id: "b5",
+    cat: "bebidas",
+    name: "Agua Mineral",
+    desc: "Agua con o sin gas, 500ml.",
+    price: 35,
+    image: img("photo-1548839140-29a749e1cf4d"),
+  },
+];
+
+export const SHIPPING_FEE = 50;
