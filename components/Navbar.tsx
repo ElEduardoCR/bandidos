@@ -20,10 +20,11 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { href: "#inicio", label: "Inicio" },
-    { href: "#menu", label: "Menú" },
-    { href: "#nosotros", label: "Nosotros" },
-    { href: "#contacto", label: "Contacto" },
+    { href: "/#inicio", label: "Inicio" },
+    { href: "/#menu", label: "Menú" },
+    { href: "/rastrear", label: "Rastrear pedido" },
+    { href: "/#nosotros", label: "Nosotros" },
+    { href: "/#contacto", label: "Contacto" },
   ];
 
   return (
@@ -63,9 +64,9 @@ export default function Navbar() {
           </div>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-9">
+        <nav className="hidden lg:flex items-center gap-8">
           {links.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               className={`text-sm font-medium transition-colors ${
@@ -75,7 +76,7 @@ export default function Navbar() {
               }`}
             >
               {l.label}
-            </a>
+            </Link>
           ))}
           <Link
             href="/staff"
@@ -134,14 +135,14 @@ export default function Navbar() {
           >
             <nav className="flex flex-col gap-1">
               {links.map((l) => (
-                <a
+                <Link
                   key={l.href}
                   href={l.href}
                   onClick={() => setMobileOpen(false)}
                   className="px-3 py-3 text-bandido-ink font-medium hover:bg-bandido-cream rounded-xl"
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
               <Link
                 href="/staff"

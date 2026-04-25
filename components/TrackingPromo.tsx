@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "motion/react";
-import { ChefHat, Package, Bike, CheckCircle2 } from "lucide-react";
+import { ChefHat, Package, Bike, CheckCircle2, Search } from "lucide-react";
 
 const STEPS = [
   { icon: CheckCircle2, label: "Pedido recibido", desc: "Confirmación instantánea" },
@@ -27,6 +28,14 @@ export default function TrackingPromo() {
           Desde el momento en que tu pedido entra a la cocina hasta que llega a
           tu puerta, tendrás visibilidad total del proceso.
         </p>
+
+        <Link
+          href="/rastrear"
+          className="mt-8 inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-bandido-green text-white font-semibold hover:bg-bandido-green-dark hover:scale-[1.02] active:scale-95 transition-all shadow-2xl shadow-bandido-green/40"
+        >
+          <Search className="w-4 h-4" />
+          Rastrear mi pedido
+        </Link>
 
         <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4">
           {STEPS.map((s, i) => (

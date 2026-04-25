@@ -7,10 +7,6 @@ import About from "@/components/About";
 import TrackingPromo from "@/components/TrackingPromo";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
-import CheckoutModal from "@/components/CheckoutModal";
-import TrackingModal from "@/components/TrackingModal";
-import Toast from "@/components/Toast";
 
 export default function Home() {
   return (
@@ -24,12 +20,6 @@ export default function Home() {
       <TrackingPromo />
       <Contact />
       <Footer />
-
-      {/* Overlays */}
-      <CartDrawer />
-      <CheckoutModal />
-      <TrackingModal />
-      <Toast />
     </main>
   );
 }

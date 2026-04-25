@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter, Bebas_Neue } from "next/font/google";
 import { StoreProvider } from "@/hooks/useStore";
+import GlobalOverlays from "@/components/GlobalOverlays";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -40,7 +41,10 @@ export default function RootLayout({
       className={`${playfair.variable} ${inter.variable} ${bebas.variable}`}
     >
       <body className="antialiased">
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          {children}
+          <GlobalOverlays />
+        </StoreProvider>
       </body>
     </html>
   );

@@ -1,16 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { Check, X, MapPin, CreditCard } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
+import Link from "next/link";
 import { useEffect } from "react";
 import { useStore } from "@/hooks/useStore";
-import { fmtMXN } from "@/lib/utils";
-import {
-  STATUS_ORDER,
-  STATUS_LABEL,
-  STATUS_DESC,
-  PAYMENT_LABEL,
-} from "@/lib/types";
+import OrderTracker from "./OrderTracker";
 
 export default function TrackingModal() {
   const { trackingOrder, setTrackingOrder, orders } = useStore();
@@ -26,7 +21,6 @@ export default function TrackingModal() {
   }, [orders]);
 
   const order = trackingOrder;
-  const idx = order ? STATUS_ORDER.indexOf(order.status) : -1;
 
   return (
     <AnimatePresence>
@@ -49,7 +43,7 @@ export default function TrackingModal() {
             >
               <header className="flex items-center justify-between px-6 py-4 border-b border-black/5">
                 <h3 className="font-display text-xl text-bandido-brown font-bold">
-                  Seguimiento del pedido
+                  Pedido confirmado
                 </h3>
                 <button
                   onClick={() => setTrackingOrder(null)}
@@ -61,120 +55,19 @@ export default function TrackingModal() {
               </header>
 
               <div className="flex-1 overflow-y-auto thin-scroll px-6 py-5">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", damping: 12, stiffness: 200 }}
-                  className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-bandido-green to-bandido-green-dark grid place-items-center mb-4 shadow-xl shadow-bandido-green/30"
+                <OrderTracker order={order} compact />
+
+                <Link
+                  href={`/rastrear?id=${encodeURIComponent(order.id)}`}
+                  onClick={() => setTrackingOrder(null)}
+                  className="mt-6 flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-bandido-brown text-white font-semibold hover:bg-bandido-brown-light transition group"
                 >
-                  <Check className="w-7 h-7 text-white" strokeWidth={3} />
-                </motion.div>
-                <div className="text-center mb-7">
-                  <h4 className="font-display text-2xl text-bandido-brown font-bold">
-                    ¡Gracias, {order.customer.name.split(" ")[0]}!
-                  </h4>
-                  <p className="text-bandido-ink/60 text-sm mt-1">
-                    Tu pedido fue confirmado correctamente
-                  </p>
-                  <div className="inline-block mt-3 px-4 py-1.5 rounded-full bg-bandido-cream font-condensed tracking-widest text-sm text-bandido-brown">
-                    {order.id}
-                  </div>
-                </div>
-
-                {/* Stepper */}
-                <ol className="relative space-y-1">
-                  <div className="absolute left-[19px] top-3 bottom-3 w-0.5 bg-bandido-cream" />
-                  <motion.div
-                    className="absolute left-[19px] top-3 w-0.5 bg-gradient-to-b from-bandido-green to-bandido-green-dark"
-                    initial={{ height: 0 }}
-                    animate={{
-                      height: `calc(${(idx / (STATUS_ORDER.length - 1)) * 100}% - 0px)`,
-                    }}
-                    transition={{ duration: 0.6 }}
-                  />
-
-                  {STATUS_ORDER.map((s, i) => {
-                    const done = i < idx;
-                    const current = i === idx;
-                    const hist = order.statusHistory.find((h) => h.status === s);
-                    const time = hist
-                      ? new Date(hist.at).toLocaleTimeString("es-MX", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })
-                      : null;
-                    return (
-                      <li
-                        key={s}
-                        className="relative flex items-center gap-4 py-3"
-                      >
-                        <div
-                          className={`relative z-10 w-10 h-10 rounded-full grid place-items-center transition-all ${
-                            done || current
-                              ? "bg-bandido-green text-white"
-                              : "bg-bandido-cream text-bandido-ink/40"
-                          } ${current ? "ring-4 ring-bandido-green/20" : ""}`}
-                        >
-                          {done ? (
-                            <Check className="w-5 h-5" strokeWidth={3} />
-                          ) : current ? (
-                            <motion.span
-                              animate={{ scale: [1, 1.2, 1] }}
-                              transition={{ duration: 1.5, repeat: Infinity }}
-                              className="w-2.5 h-2.5 rounded-full bg-white"
-                            />
-                          ) : (
-                            <span className="font-bold text-sm">{i + 1}</span>
-                          )}
-                        </div>
-                        <div className="flex-1">
-                          <div
-                            className={`font-semibold text-sm ${
-                              done || current
-                                ? "text-bandido-brown"
-                                : "text-bandido-ink/40"
-                            }`}
-                          >
-                            {STATUS_LABEL[s]}
-                          </div>
-                          <div className="text-xs text-bandido-ink/50">
-                            {current
-                              ? STATUS_DESC[s]
-                              : time || "Pendiente"}
-                          </div>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ol>
-
-                {/* Summary */}
-                <div className="mt-6 grid grid-cols-2 gap-3">
-                  <div className="bg-bandido-cream rounded-2xl p-4">
-                    <div className="flex items-center gap-2 text-xs text-bandido-ink/50 mb-1">
-                      <MapPin className="w-3.5 h-3.5" /> Dirección
-                    </div>
-                    <p className="text-sm font-medium text-bandido-brown leading-tight">
-                      {order.customer.address}
-                    </p>
-                  </div>
-                  <div className="bg-bandido-cream rounded-2xl p-4">
-                    <div className="flex items-center gap-2 text-xs text-bandido-ink/50 mb-1">
-                      <CreditCard className="w-3.5 h-3.5" /> Pago
-                    </div>
-                    <p className="text-sm font-medium text-bandido-brown leading-tight">
-                      {PAYMENT_LABEL[order.payment.method]}
-                      {order.payment.last4 && ` ····${order.payment.last4}`}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex justify-between items-center mt-4 px-1 text-sm">
-                  <span className="text-bandido-ink/60">Total pagado</span>
-                  <span className="font-condensed text-2xl text-bandido-green">
-                    {fmtMXN(order.total)}
-                  </span>
-                </div>
+                  Abrir rastreo en una página
+                  <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition" />
+                </Link>
+                <p className="text-[11px] text-bandido-ink/40 text-center mt-2">
+                  Guarda tu folio <strong className="text-bandido-brown">{order.id}</strong> para consultarlo cuando quieras
+                </p>
               </div>
             </motion.div>
           </div>

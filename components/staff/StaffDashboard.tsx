@@ -16,7 +16,6 @@ import {
   type OrderStatus,
 } from "@/lib/types";
 import { fmtMXN, uid } from "@/lib/utils";
-import Toast from "../Toast";
 
 const SAMPLE_NAMES = [
   "María González",
@@ -268,7 +267,6 @@ export default function StaffDashboard() {
       </section>
 
       <OrderDetailModal order={detail} onClose={() => setDetail(null)} />
-      <Toast />
     </div>
   );
 }
